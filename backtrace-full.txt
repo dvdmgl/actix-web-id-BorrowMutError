@@ -1,0 +1,1019 @@
+RUST_BACKTRACE=full cargo run
+    Finished dev [unoptimized + debuginfo] target(s) in 0.24s
+     Running `target/debug/deadpool-example-postgres-actix-web-id-failing`
+Server running at http://127.0.0.1:8080/
+Try the following URLs: http://127.0.0.1:8080/v1.0/event.list
+thread 'actix-rt:worker:1' panicked at 'already borrowed: BorrowMutError', src/libcore/result.rs:1165:5
+stack backtrace:
+thread 'actix-rt:worker:2' panicked at 'already borrowed: BorrowMutError', src/libcore/result.rs:1165:5
+thread 'actix-rt:worker:5' panicked at 'already borrowed: BorrowMutError', src/libcore/result.rs:1165:5
+thread 'actix-rt:worker:7' panicked at 'already borrowed: BorrowMutError', src/libcore/result.rs:1165:5
+   0:     0x55eb9f9a6fa4 - backtrace::backtrace::libunwind::trace::h65597d255cb1398b
+                               at /cargo/registry/src/github.com-1ecc6299db9ec823/backtrace-0.3.40/src/backtrace/libunwind.rs:88
+   1:     0x55eb9f9a6fa4 - backtrace::backtrace::trace_unsynchronized::hd4f479d7150ec4a0
+                               at /cargo/registry/src/github.com-1ecc6299db9ec823/backtrace-0.3.40/src/backtrace/mod.rs:66
+   2:     0x55eb9f9a6fa4 - std::sys_common::backtrace::_print_fmt::h015072984a2b172c
+                               at src/libstd/sys_common/backtrace.rs:77
+   3:     0x55eb9f9a6fa4 - <std::sys_common::backtrace::_print::DisplayBacktrace as core::fmt::Display>::fmt::h6df05d3335f32194
+                               at src/libstd/sys_common/backtrace.rs:61
+   4:     0x55eb9f9c81ac - core::fmt::write::h1f444f4312eb6c27
+                               at src/libcore/fmt/mod.rs:1028
+   5:     0x55eb9f9a2807 - std::io::Write::write_fmt::h8d147888220078ef
+                               at src/libstd/io/mod.rs:1412
+   6:     0x55eb9f9a947e - std::sys_common::backtrace::_print::h8a6df0fa81d6af62
+                               at src/libstd/sys_common/backtrace.rs:65
+   7:     0x55eb9f9a947e - std::sys_common::backtrace::print::h6f05b4733407e509
+                               at src/libstd/sys_common/backtrace.rs:50
+   8:     0x55eb9f9a947e - std::panicking::default_hook::{{closure}}::h0d0a23bd02315dd8
+                               at src/libstd/panicking.rs:188
+   9:     0x55eb9f9a9171 - std::panicking::default_hook::h8d15a9aecb4efac6
+                               at src/libstd/panicking.rs:205
+  10:     0x55eb9f9a9b7b - std::panicking::rust_panic_with_hook::hbe174577402a475d
+                               at src/libstd/panicking.rs:464
+  11:     0x55eb9f9a971e - std::panicking::continue_panic_fmt::h4d855dad868accf3
+                               at src/libstd/panicking.rs:373
+  12:     0x55eb9f9a9606 - rust_begin_unwind
+                               at src/libstd/panicking.rs:302
+  13:     0x55eb9f9c4d3e - core::panicking::panic_fmt::hdeb7979ab6591473
+                               at src/libcore/panicking.rs:139
+  14:     0x55eb9f9c4e37 - core::result::unwrap_failed::h054dd680e6fcd38b
+                               at src/libcore/result.rs:1165
+  15:     0x55eb9f100afb - core::result::Result<T,E>::expect::h93d92cc45da8f772
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/result.rs:960
+  16:     0x55eb9f0d9eeb - core::cell::RefCell<T>::borrow_mut::h30249db1ef8ca042
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/cell.rs:869
+  17:     0x55eb9f0ddc82 - <actix_identity::IdentityServiceMiddleware<S,T> as actix_service::Service>::call::{{closure}}::hb6413b29ec62f5a1
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-identity-0.2.0/src/lib.rs:282
+  18:     0x55eb9f0fa63b - <std::future::GenFuture<T> as core::future::future::Future>::poll::{{closure}}::hc8f21f6d93c2ace0
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  19:     0x55eb9f0f41ab - std::future::set_task_context::habe44d00c2f8f176
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:79
+  20:     0x55eb9f0f7fea - <std::future::GenFuture<T> as core::future::future::Future>::poll::hfb2677a702941a4d
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  21:     0x55eb9f249251 - <core::pin::Pin<P> as core::future::future::Future>::poll::h6456cd2a2ff82cc9
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/future/future.rs:119
+  22:     0x55eb9f04dff8 - actix_http::h1::dispatcher::InnerDispatcher<T,S,B,X,U>::handle_request::h309be27211c620ea
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-http-1.0.1/src/h1/dispatcher.rs:486
+  23:     0x55eb9f048a87 - actix_http::h1::dispatcher::InnerDispatcher<T,S,B,X,U>::poll_request::h99c9971f7093798b
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-http-1.0.1/src/h1/dispatcher.rs:541
+  24:     0x55eb9f0501ee - <actix_http::h1::dispatcher::Dispatcher<T,S,B,X,U> as core::future::future::Future>::poll::hefc84af98a61a99b
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-http-1.0.1/src/h1/dispatcher.rs:744
+  25:     0x55eb9f0e90ce - actix_http::service::State<T,S,B,X,U>::poll::he8184ef2513971cf
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-http-1.0.1/src/service.rs:660
+  26:     0x55eb9f0eb7af - <actix_http::service::HttpServiceHandlerResponse<T,S,B,X,U> as core::future::future::Future>::poll::hb33a30792d964e05
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-http-1.0.1/src/service.rs:637
+  27:     0x55eb9f05626e - <actix_service::and_then::AndThenServiceResponse<A,B> as core::future::future::Future>::poll::h8b33a2fc10c615a4
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-service-1.0.2/src/and_then.rs:103
+  28:     0x55eb9f0f68e4 - std::future::poll_with_tls_context::{{closure}}::h42917c00e18b4768
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  29:     0x55eb9f0ecf9c - std::future::get_task_context::h168d1f277456442a
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:111
+  30:     0x55eb9f0f64e4 - std::future::poll_with_tls_context::he98f3fdb5fa0a375
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  31:     0x55eb9f0b0a27 - <actix_server::service::StreamService<T> as actix_service::Service>::call::{{closure}}::hb0482fbecdd0df98
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-server-1.0.1/src/service.rs:85
+  32:     0x55eb9f0f8bdb - <std::future::GenFuture<T> as core::future::future::Future>::poll::{{closure}}::h3989acf9a6f58a83
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  33:     0x55eb9f0f2a59 - std::future::set_task_context::h10f6bec5ace0b679
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:79
+  34:     0x55eb9f0f7ad6 - <std::future::GenFuture<T> as core::future::future::Future>::poll::hce2d3667a898641f
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  35:     0x55eb9f0be36b - tokio::task::core::Core<T>::poll::hf772fd233191cc8f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/core.rs:128
+  36:     0x55eb9f0d4994 - tokio::task::harness::Harness<T,S>::poll::{{closure}}::{{closure}}::h723438dbff8f4c42
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/harness.rs:120
+  37:     0x55eb9f0890d8 - core::ops::function::FnOnce::call_once::haf06d04ba7cd0af5
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/ops/function.rs:227
+  38:     0x55eb9f0fbd4d - <std::panic::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once::hb7505a9f4286bf4d
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:317
+  39:     0x55eb9f0e4f00 - std::panicking::try::do_call::h9711801ab2adc3c4
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:287
+  40:     0x55eb9f9adeda - __rust_maybe_catch_panic
+                               at src/libpanic_unwind/lib.rs:78
+  41:     0x55eb9f0e4ca7 - std::panicking::try::hfd7e1ddd0f9d3e49
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:265
+  42:     0x55eb9f0fbea4 - std::panic::catch_unwind::he9d33ee10878dfe4
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:396
+  43:     0x55eb9f0d4792 - tokio::task::harness::Harness<T,S>::poll::{{closure}}::h76be99d7406dae34
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/harness.rs:101
+  44:     0x55eb9f071d7f - tokio::loom::std::causal_cell::CausalCell<T>::with_mut::h8bfa8c9e7082f909
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/loom/std/causal_cell.rs:41
+  45:     0x55eb9f0d434b - tokio::task::harness::Harness<T,S>::poll::hbd78702b2b2c0865
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/harness.rs:100
+  46:     0x55eb9f0df5c6 - tokio::task::raw::poll::hf69a9a2feaf934bb
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/raw.rs:162
+  47:     0x55eb9f916d47 - tokio::task::raw::RawTask::poll::h6dcd2aa5edb1c3ce
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/raw.rs:113
+  48:     0x55eb9f89f18c - tokio::task::Task<S>::run::hc41fc0f46c57bdcc
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/mod.rs:371
+  49:     0x55eb9f8d418b - tokio::task::local::Scheduler::tick::hbc580cbb844f4a43
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:513
+  50:     0x55eb9f6ec5c2 - <tokio::task::local::LocalFuture<F> as core::future::future::Future>::poll::{{closure}}::hf2ebdefb8600971f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:407
+  51:     0x55eb9f6eb777 - tokio::task::local::Scheduler::with::{{closure}}::h7853f7a06d1a7d80
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:478
+  52:     0x55eb9f71430d - std::thread::local::LocalKey<T>::try_with::h38c3bcf2431c57af
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/local.rs:262
+  53:     0x55eb9f712e0c - std::thread::local::LocalKey<T>::with::h14c938bbab4ae39e
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/local.rs:239
+  54:     0x55eb9f6eb62f - tokio::task::local::Scheduler::with::h37b96d481465d74f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:474
+  55:     0x55eb9f6ec370 - <tokio::task::local::LocalFuture<F> as core::future::future::Future>::poll::h5cf5463b78acac93
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:402
+  56:     0x55eb9f70020e - std::future::poll_with_tls_context::{{closure}}::h526aef982e52e394
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  57:     0x55eb9f6ffc65 - std::future::get_task_context::h09323b2ae8cc2955
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:111
+  58:     0x55eb9f7001ce - std::future::poll_with_tls_context::hf4d8652ffcfc7002
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  59:     0x55eb9f6eb45e - tokio::task::local::LocalSet::run_until::{{closure}}::h0ef84a9294fc5eb6
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:358
+  60:     0x55eb9f700acf - <std::future::GenFuture<T> as core::future::future::Future>::poll::{{closure}}::h0d1930a10b5bcef9
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  61:     0x55eb9f700041 - std::future::set_task_context::ha941627c271c70ee
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:79
+  62:     0x55eb9f700a98 - <std::future::GenFuture<T> as core::future::future::Future>::poll::h379d6c90c5e9f714
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  63:     0x55eb9f6e3df0 - tokio::runtime::basic_scheduler::BasicScheduler<P>::block_on::h9424e225f5627eb6
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/basic_scheduler.rs:138
+  64:     0x55eb9f70090b - tokio::runtime::Runtime::block_on::{{closure}}::h018e1ae877b3cf43
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/mod.rs:411
+  65:     0x55eb9f6f22c4 - tokio::runtime::context::enter::h7bea5729ab3bb14c
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/context.rs:72
+  66:     0x55eb9f6f20f2 - tokio::runtime::handle::Handle::enter::h993241ae0b4435b2
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/handle.rs:33
+  67:     0x55eb9f70083e - tokio::runtime::Runtime::block_on::ha9e1500da2420d98
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/mod.rs:408
+  68:     0x55eb9f6eaf95 - tokio::task::local::LocalSet::block_on::h86368ad51fef75ca
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:321
+  69:     0x55eb9f6f3908 - actix_rt::runtime::Runtime::block_on::h2c5a2db3698f1ab1
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-rt-1.0.0/src/runtime.rs:89
+  70:     0x55eb9f6ed75f - actix_rt::arbiter::Arbiter::new::{{closure}}::h17b41a81d1b4d09b
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-rt-1.0.0/src/arbiter.rs:125
+  71:     0x55eb9f6f7385 - std::sys_common::backtrace::__rust_begin_short_backtrace::h6fdfccbbe84af3d4
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/sys_common/backtrace.rs:129
+  72:     0x55eb9f6d66f4 - std::thread::Builder::spawn_unchecked::{{closure}}::{{closure}}::h60da116e8745935c
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/mod.rs:469
+  73:     0x55eb9f6ccfa4 - <std::panic::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once::h3cbb2bc9bd27ad56
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:317
+  74:     0x55eb9f6f4b21 - std::panicking::try::do_call::h1c56af86e4b39ceb
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:287
+  75:     0x55eb9f9adeda - __rust_maybe_catch_panic
+                               at src/libpanic_unwind/lib.rs:78
+  76:     0x55eb9f6f3a38 - std::panicking::try::h01dafaebe7d59893
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:265
+  77:     0x55eb9f6cd6f6 - std::panic::catch_unwind::hd40201c6b8f08088
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:396
+  78:     0x55eb9f6d64cd - std::thread::Builder::spawn_unchecked::{{closure}}::h16ef6d336568b212
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/mod.rs:468
+  79:     0x55eb9f6d95b4 - core::ops::function::FnOnce::call_once{{vtable.shim}}::h8b14e0483c05e5b6
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/ops/function.rs:227
+  80:     0x55eb9f99df8f - <alloc::boxed::Box<F> as core::ops::function::FnOnce<A>>::call_once::h3534c64212330b0c
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/liballoc/boxed.rs:942
+  81:     0x55eb9f9ad310 - <alloc::boxed::Box<F> as core::ops::function::FnOnce<A>>::call_once::h338c10574a337ece
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/liballoc/boxed.rs:942
+  82:     0x55eb9f9ad310 - std::sys_common::thread::start_thread::h761ac6d57710d65d
+                               at src/libstd/sys_common/thread.rs:13
+  83:     0x55eb9f9ad310 - std::sys::unix::thread::Thread::new::thread_start::h61c012ef60f933c0
+                               at src/libstd/sys/unix/thread.rs:79
+  84:     0x7fed734ef182 - start_thread
+  85:     0x7fed733feb1f - __clone
+  86:                0x0 - <unknown>
+stack backtrace:
+   0:     0x55eb9f9a6fa4 - backtrace::backtrace::libunwind::trace::h65597d255cb1398b
+                               at /cargo/registry/src/github.com-1ecc6299db9ec823/backtrace-0.3.40/src/backtrace/libunwind.rs:88
+   1:     0x55eb9f9a6fa4 - backtrace::backtrace::trace_unsynchronized::hd4f479d7150ec4a0
+                               at /cargo/registry/src/github.com-1ecc6299db9ec823/backtrace-0.3.40/src/backtrace/mod.rs:66
+   2:     0x55eb9f9a6fa4 - std::sys_common::backtrace::_print_fmt::h015072984a2b172c
+                               at src/libstd/sys_common/backtrace.rs:77
+   3:     0x55eb9f9a6fa4 - <std::sys_commonthread '::actix-rt:worker:1backtrace' panicked at '::already borrowed: BorrowMutError_print', ::src/libcore/result.rsDisplayBacktrace: 1165as: 5core
+::fmt::Display>::fmt::h6df05d3335f32194
+                               at src/libstd/sys_common/backtrace.rs:61
+   4:     0x55eb9f9c81ac - core::fmt::write::h1f444f4312eb6c27
+                               at src/libcore/fmt/mod.rs:1028
+   5:     0x55eb9f9a2807 - std::io::Write::write_fmt::h8d147888220078ef
+                               at src/libstd/io/mod.rs:1412
+   6:     0x55eb9f9a947e - std::sys_common::backtrace::_print::h8a6df0fa81d6af62
+                               at src/libstd/sys_common/backtrace.rs:65
+   7:     0x55eb9f9a947e - std::sys_common::backtrace::print::h6f05b4733407e509
+                               at src/libstd/sys_common/backtrace.rs:50
+   8:     0x55eb9f9a947e - std::panicking::default_hook::{{closure}}::h0d0a23bd02315dd8
+                               at src/libstd/panicking.rs:188
+   9:     0x55eb9f9a9171 - std::panicking::default_hook::h8d15a9aecb4efac6
+                               at src/libstd/panicking.rs:205
+  10:     0x55eb9f9a9b7b - std::panicking::rust_panic_with_hook::hbe174577402a475d
+                               at src/libstd/panicking.rs:464
+  11:     0x55eb9f9a971e - std::panicking::continue_panic_fmt::h4d855dad868accf3
+                               at src/libstd/panicking.rs:373
+  12:     0x55eb9f9a9606 - rust_begin_unwind
+                               at src/libstd/panicking.rs:302
+  13:     0x55eb9f9c4d3e - core::panicking::panic_fmt::hdeb7979ab6591473
+                               at src/libcore/panicking.rs:139
+  14:     0x55eb9f9c4e37 - core::result::unwrap_failed::h054dd680e6fcd38b
+                               at src/libcore/result.rs:1165
+  15:     0x55eb9f100afb - core::result::Result<T,E>::expect::h93d92cc45da8f772
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/result.rs:960
+  16:     0x55eb9f0d9eeb - core::cell::RefCell<T>::borrow_mut::h30249db1ef8ca042
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/cell.rs:869
+  17:     0x55eb9f0ddc82 - <actix_identity::IdentityServiceMiddleware<S,T> as actix_service::Service>::call::{{closure}}::hb6413b29ec62f5a1
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-identity-0.2.0/src/lib.rs:282
+  18:     0x55eb9f0fa63b - <std::future::GenFuture<T> as core::future::future::Future>::poll::{{closure}}::hc8f21f6d93c2ace0
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  19:     0x55eb9f0f41ab - std::future::set_task_context::habe44d00c2f8f176
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:79
+  20:     0x55eb9f0f7fea - <std::future::GenFuture<T> as core::future::future::Future>::poll::hfb2677a702941a4d
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  21:     0x55eb9f249251 - <core::pin::Pin<P> as core::future::future::Future>::poll::h6456cd2a2ff82cc9
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/future/future.rs:119
+  22:     0x55eb9f04dff8 - actix_http::h1::dispatcher::InnerDispatcher<T,S,B,X,U>::handle_request::h309be27211c620ea
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-http-1.0.1/src/h1/dispatcher.rs:486
+  23:     0x55eb9f048a87 - actix_http::h1::dispatcher::InnerDispatcher<T,S,B,X,U>::poll_request::h99c9971f7093798b
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-http-1.0.1/src/h1/dispatcher.rs:541
+  24:     0x55eb9f0501ee - <actix_http::h1::dispatcher::Dispatcher<T,S,B,X,U> as core::future::future::Future>::poll::hefc84af98a61a99b
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-http-1.0.1/src/h1/dispatcher.rs:744
+  25:     0x55eb9f0e90ce - actix_http::service::State<T,S,B,X,U>::poll::he8184ef2513971cf
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-http-1.0.1/src/service.rs:660
+  26:     0x55eb9f0eb7af - <actix_http::service::HttpServiceHandlerResponse<T,S,B,X,U> as core::future::future::Future>::poll::hb33a30792d964e05
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-http-1.0.1/src/service.rs:637
+  27:     0x55eb9f05626e - <actix_service::and_then::AndThenServiceResponse<A,B> as core::future::future::Future>::poll::h8b33a2fc10c615a4
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-service-1.0.2/src/and_then.rs:103
+  28:     0x55eb9f0f68e4 - std::future::poll_with_tls_context::{{closure}}::h42917c00e18b4768
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  29:     0x55eb9f0ecf9c - std::future::get_task_context::h168d1f277456442a
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:111
+  30:     0x55eb9f0f64e4 - std::future::poll_with_tls_context::he98f3fdb5fa0a375
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  31:     0x55eb9f0b0a27 - <actix_server::service::StreamService<T> as actix_service::Service>::call::{{closure}}::hb0482fbecdd0df98
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-server-1.0.1/src/service.rs:85
+  32:     0x55eb9f0f8bdb - <std::future::GenFuture<T> as core::future::future::Future>::poll::{{closure}}::h3989acf9a6f58a83
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  33:     0x55eb9f0f2a59 - std::future::set_task_context::h10f6bec5ace0b679
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:79
+  34:     0x55eb9f0f7ad6 - <std::future::GenFuture<T> as core::future::future::Future>::poll::hce2d3667a898641f
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  35:     0x55eb9f0be36b - tokio::task::core::Core<T>::poll::hf772fd233191cc8f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/core.rs:128
+  36:     0x55eb9f0d4994 - tokio::task::harness::Harness<T,S>::poll::{{closure}}::{{closure}}::h723438dbff8f4c42
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/harness.rs:120
+  37:     0x55eb9f0890d8 - core::ops::function::FnOnce::call_once::haf06d04ba7cd0af5
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/ops/function.rs:227
+  38:     0x55eb9f0fbd4d - <std::panic::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once::hb7505a9f4286bf4d
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:317
+  39:     0x55eb9f0e4f00 - std::panicking::try::do_call::h9711801ab2adc3c4
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:287
+  40:     0x55eb9f9adeda - __rust_maybe_catch_panic
+                               at src/libpanic_unwind/lib.rs:78
+  41:     0x55eb9f0e4ca7 - std::panicking::try::hfd7e1ddd0f9d3e49
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:265
+  42:     0x55eb9f0fbea4 - std::panic::catch_unwind::he9d33ee10878dfe4
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:396
+  43:     0x55eb9f0d4792 - tokio::task::harness::Harness<T,S>::poll::{{closure}}::h76be99d7406dae34
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/harness.rs:101
+  44:     0x55eb9f071d7f - tokio::loom::std::causal_cell::CausalCell<T>::with_mut::h8bfa8c9e7082f909
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/loom/std/causal_cell.rs:41
+  45:     0x55eb9f0d434b - tokio::task::harness::Harness<T,S>::poll::hbd78702b2b2c0865
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/harness.rs:100
+  46:     0x55eb9f0df5c6 - tokio::task::raw::poll::hf69a9a2feaf934bb
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/raw.rs:162
+  47:     0x55eb9f916d47 - tokio::task::raw::RawTask::poll::h6dcd2aa5edb1c3ce
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/raw.rs:113
+  48:     0x55eb9f89f18c - tokio::task::Task<S>::run::hc41fc0f46c57bdcc
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/mod.rs:371
+  49:     0x55eb9f8d418b - tokio::task::local::Scheduler::tick::hbc580cbb844f4a43
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:513
+  50:     0x55eb9f6ec5c2 - <tokio::task::local::LocalFuture<F> as core::future::future::Future>::poll::{{closure}}::hf2ebdefb8600971f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:407
+  51:     0x55eb9f6eb777 - tokio::task::local::Scheduler::with::{{closure}}::h7853f7a06d1a7d80
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:478
+  52:     0x55eb9f71430d - std::thread::local::LocalKey<T>::try_with::h38c3bcf2431c57af
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/local.rs:262
+  53:     0x55eb9f712e0c - std::thread::local::LocalKey<T>::with::h14c938bbab4ae39e
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/local.rs:239
+  54:     0x55eb9f6eb62f - tokio::task::local::Scheduler::with::h37b96d481465d74f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:474
+  55:     0x55eb9f6ec370 - <tokio::task::local::LocalFuture<F> as core::future::future::Future>::poll::h5cf5463b78acac93
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:402
+  56:     0x55eb9f70020e - std::future::poll_with_tls_context::{{closure}}::h526aef982e52e394
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  57:     0x55eb9f6ffc65 - std::future::get_task_context::h09323b2ae8cc2955
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:111
+  58:     0x55eb9f7001ce - std::future::poll_with_tls_context::hf4d8652ffcfc7002
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  59:     0x55eb9f6eb45e - tokio::task::local::LocalSet::run_until::{{closure}}::h0ef84a9294fc5eb6
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:358
+  60:     0x55eb9f700acf - <std::future::GenFuture<T> as core::future::future::Future>::poll::{{closure}}::h0d1930a10b5bcef9
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  61:     0x55eb9f700041 - std::future::set_task_context::ha941627c271c70ee
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:79
+  62:     0x55eb9f700a98 - <std::future::GenFuture<T> as core::future::future::Future>::poll::h379d6c90c5e9f714
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  63:     0x55eb9f6e3df0 - tokio::runtime::basic_scheduler::BasicScheduler<P>::block_on::h9424e225f5627eb6
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/basic_scheduler.rs:138
+  64:     0x55eb9f70090b - tokio::runtime::Runtime::block_on::{{closure}}::h018e1ae877b3cf43
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/mod.rs:411
+  65:     0x55eb9f6f22c4 - tokio::runtime::context::enter::h7bea5729ab3bb14c
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/context.rs:72
+  66:     0x55eb9f6f20f2 - tokio::runtime::handle::Handle::enter::h993241ae0b4435b2
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/handle.rs:33
+  67:     0x55eb9f70083e - tokio::runtime::Runtime::block_on::ha9e1500da2420d98
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/mod.rs:408
+  68:     0x55eb9f6eaf95 - tokio::task::local::LocalSet::block_on::h86368ad51fef75ca
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:321
+  69:     0x55eb9f6f3908 - actix_rt::runtime::Runtime::block_on::h2c5a2db3698f1ab1
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-rt-1.0.0/src/runtime.rs:89
+  70:     0x55eb9f6ed75f - actix_rt::arbiter::Arbiter::new::{{closure}}::h17b41a81d1b4d09b
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-rt-1.0.0/src/arbiter.rs:125
+  71:     0x55eb9f6f7385 - std::sys_common::backtrace::__rust_begin_short_backtrace::h6fdfccbbe84af3d4
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/sys_common/backtrace.rs:129
+  72:     0x55eb9f6d66f4 - std::thread::Builder::spawn_unchecked::{{closure}}::{{closure}}::h60da116e8745935c
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/mod.rs:469
+  73:     0x55eb9f6ccfa4 - <std::panic::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once::h3cbb2bc9bd27ad56
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:317
+  74:     0x55eb9f6f4b21 - std::panicking::try::do_call::h1c56af86e4b39ceb
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:287
+  75:     0x55eb9f9adeda - __rust_maybe_catch_panic
+                               at src/libpanic_unwind/lib.rs:78
+  76:     0x55eb9f6f3a38 - std::panicking::try::h01dafaebe7d59893
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:265
+  77:     0x55eb9f6cd6f6 - std::panic::catch_unwind::hd40201c6b8f08088
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:396
+  78:     0x55eb9f6d64cd - std::thread::Builder::spawn_unchecked::{{closure}}::h16ef6d336568b212
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/mod.rs:468
+  79:     0x55eb9f6d95b4 - core::ops::function::FnOnce::call_once{{vtable.shim}}::h8b14e0483c05e5b6
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/ops/function.rs:227
+  80:     0x55eb9f99df8f - <alloc::boxed::Box<F> as core::ops::function::FnOnce<A>>::call_once::h3534c64212330b0c
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/liballoc/boxed.rs:942
+  81:     0x55eb9f9ad310 - <alloc::boxed::Box<F> as core::ops::function::FnOnce<A>>::call_once::h338c10574a337ece
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/liballoc/boxed.rs:942
+  82:     0x55eb9f9ad310 - std::sys_common::thread::start_thread::h761ac6d57710d65d
+                               at src/libstd/sys_common/thread.rs:13
+  83:     0x55eb9f9ad310 - std::sys::unix::thread::Thread::new::thread_start::h61c012ef60f933c0
+                               at src/libstd/sys/unix/thread.rs:79
+  84:     0x7fed734ef182 - start_thread
+  85:     0x7fed733feb1f - __clone
+  86:                0x0 - <unknown>
+stack backtrace:
+   0:     0x55eb9f9a6fa4 - backtrace::backtrace::libunwind::trace::h65597d255cb1398b
+                               at /cargo/registry/src/github.com-1ecc6299db9ec823/backtrace-0.3.40/src/backtrace/libunwind.rs:88
+   1:     0x55eb9f9a6fa4 - backtrace::backtrace::trace_unsynchronized::hd4f479d7150ec4a0
+                               at /cargo/registry/src/github.com-1ecc6299db9ec823/backtrace-0.3.40/src/backtrace/mod.rs:66
+   2:     0x55eb9f9a6fa4 - std::sys_common::backtrace::_print_fmt::h015072984a2b172c
+                               at src/libstd/sys_common/backtrace.rs:77
+   3:     0x55eb9f9a6fa4 - <std::sys_common::backtrace::_print::DisplayBacktrace as core::fmt::Display>::fmt::h6df05d3335f32194
+               thread ' actix-rt:worker:2 ' panicked at ' already borrowed: BorrowMutError             at ', src/libstd/sys_common/backtrace.rssrc/libcore/result.rs::611165
+:5
+   4:     0x55eb9f9c81ac - core::fmt::write::h1f444f4312eb6c27
+                               at src/libcore/fmt/mod.rs:1028
+   5:     0x55eb9f9a2807 - std::io::Write::write_fmt::h8d147888220078ef
+                               at src/libstd/io/mod.rs:1412
+   6:     0x55eb9f9a947e - std::sys_common::backtrace::_print::h8a6df0fa81d6af62
+                               at src/libstd/sys_common/backtrace.rs:65
+   7:     0x55eb9f9a947e - std::sys_common::backtrace::print::h6f05b4733407e509
+                               at src/libstd/sys_common/backtrace.rs:50
+   8:     0x55eb9f9a947e - std::panicking::default_hook::{{closure}}::h0d0a23bd02315dd8
+                               at src/libstd/panicking.rs:188
+   9:     0x55eb9f9a9171 - std::panicking::default_hook::h8d15a9aecb4efac6
+                               at src/libstd/panicking.rs:205
+  10:     0x55eb9f9a9b7b - std::panicking::rust_panic_with_hook::hbe174577402a475d
+                               at src/libstd/panicking.rs:464
+  11:     0x55eb9f9a971e - std::panicking::continue_panic_fmt::h4d855dad868accf3
+                               at src/libstd/panicking.rs:373
+  12:     0x55eb9f9a9606 - rust_begin_unwind
+                               at src/libstd/panicking.rs:302
+  13:     0x55eb9f9c4d3e - core::panicking::panic_fmt::hdeb7979ab6591473
+                               at src/libcore/panicking.rs:139
+  14:     0x55eb9f9c4e37 - core::result::unwrap_failed::h054dd680e6fcd38b
+                               at src/libcore/result.rs:1165
+  15:     0x55eb9f100afb - core::result::Result<T,E>::expect::h93d92cc45da8f772
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/result.rs:960
+  16:     0x55eb9f0d9eeb - core::cell::RefCell<T>::borrow_mut::h30249db1ef8ca042
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/cell.rs:869
+  17:     0x55eb9f0dd4b0 - <actix_identity::IdentityServiceMiddleware<S,T> as actix_service::Service>::poll_ready::h5c4cc02f1b29f2a1
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-identity-0.2.0/src/lib.rs:268
+  18:     0x55eb9f059097 - <actix_web::app_service::AppInitService<T,B> as actix_service::Service>::poll_ready::ha81f7e796553b9df
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-web-2.0.0/src/app_service.rs:227
+  19:     0x55eb9f110c40 - <actix_http::cloneable::CloneableService<T> as actix_service::Service>::poll_ready::h16504f833cde5bae
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-http-1.0.1/src/cloneable.rs:36
+  20:     0x55eb9f0e7af2 - <actix_http::service::HttpServiceHandler<T,S,B,X,U> as actix_service::Service>::poll_ready::hde7b296b3bdfe269
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-http-1.0.1/src/service.rs:514
+  21:     0x55eb9f05745d - <actix_service::and_then::AndThenService<A,B> as actix_service::Service>::poll_ready::he1c8d6e94ce952b4
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-service-1.0.2/src/and_then.rs:45
+  22:     0x55eb9f0b0312 - <actix_server::service::StreamService<T> as actix_service::Service>::poll_ready::ha5f3394dd99cdb59
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-server-1.0.1/src/service.rs:72
+  23:     0x55eb9f313b98 - actix_server::worker::Worker::check_readiness::h0c7d2f2d7a640a8f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-server-1.0.1/src/worker.rs:260
+  24:     0x55eb9f31630e - <actix_server::worker::Worker as core::future::future::Future>::poll::hfc1fcf0f0601fbd9
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-server-1.0.1/src/worker.rs:453
+  25:     0x55eb9f30edbe - std::future::poll_with_tls_context::{{closure}}::h3708e647ffb29f35
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  26:     0x55eb9f30e3f5 - std::future::get_task_context::h789805cfbc8c0eb3
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:111
+  27:     0x55eb9f30ed2e - std::future::poll_with_tls_context::h0e03ed13fc4db9d0
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  28:     0x55eb9f31294f - actix_server::worker::Worker::start::{{closure}}::{{closure}}::h875d387a1c7680af
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-server-1.0.1/src/worker.rs:217
+  29:     0x55eb9f310deb - <std::future::GenFuture<T> as core::future::future::Future>::poll::{{closure}}::h2c5d5298eb24aa51
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  30:     0x55eb9f30ea41 - std::future::set_task_context::h94b8f5e14ee574d7
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:79
+  31:     0x55eb9f310cc8 - <std::future::GenFuture<T> as core::future::future::Future>::poll::hb04074825ec177f9
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  32:     0x55eb9f2e26f1 - tokio::task::core::Core<T>::poll::h092706b870b9e79f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/core.rs:128
+  33:     0x55eb9f34b208 - tokio::task::harness::Harness<T,S>::poll::{{closure}}::{{closure}}::hd3bef10a96902e6c
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/harness.rs:120
+  34:     0x55eb9f32fb5c - core::ops::function::FnOnce::call_once::he700d9400b62941f
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/ops/function.rs:227
+  35:     0x55eb9f2bbebe - <std::panic::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once::h29e555a8cff85868
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:317
+  36:     0x55eb9f361355 - std::panicking::try::do_call::hea8b1add176a5bc4
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:287
+  37:     0x55eb9f9adeda - __rust_maybe_catch_panic
+                               at src/libpanic_unwind/lib.rs:78
+  38:     0x55eb9f35edb7 - std::panicking::try::h1a27d50d956710b2
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:265
+  39:     0x55eb9f2bc775 - std::panic::catch_unwind::hefa9648ffa63ecc5
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:396
+  40:     0x55eb9f34ab43 - tokio::task::harness::Harness<T,S>::poll::{{closure}}::hb6c6122aa281993b
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/harness.rs:101
+  41:     0x55eb9f2ef3df - tokio::loom::std::causal_cell::CausalCell<T>::with_mut::h1803aef40ff3e34d
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/loom/std/causal_cell.rs:41
+  42:     0x55eb9f348500 - tokio::task::harness::Harness<T,S>::poll::h36e43560103b33d3
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/harness.rs:100
+  43:     0x55eb9f2f2268 - tokio::task::raw::poll::h9c9e2f603d607e16
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/raw.rs:162
+  44:     0x55eb9f916d47 - tokio::task::raw::RawTask::poll::h6dcd2aa5edb1c3ce
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/raw.rs:113
+  45:     0x55eb9f89f18c - tokio::task::Task<S>::run::hc41fc0f46c57bdcc
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/mod.rs:371
+  46:     0x55eb9f8d418b - tokio::task::local::Scheduler::tick::hbc580cbb844f4a43
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:513
+  47:     0x55eb9f6ec5c2 - <tokio::task::local::LocalFuture<F> as core::future::future::Future>::poll::{{closure}}::hf2ebdefb8600971f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:407
+  48:     0x55eb9f6eb777 - tokio::task::local::Scheduler::with::{{closure}}::h7853f7a06d1a7d80
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:478
+  49:     0x55eb9f71430d - std::thread::local::LocalKey<T>::try_with::h38c3bcf2431c57af
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/local.rs:262
+  50:     0x55eb9f712e0c - std::thread::local::LocalKey<T>::with::h14c938bbab4ae39e
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/local.rs:239
+  51:     0x55eb9f6eb62f - tokio::task::local::Scheduler::with::h37b96d481465d74f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:474
+  52:     0x55eb9f6ec370 - <tokio::task::local::LocalFuture<F> as core::future::future::Future>::poll::h5cf5463b78acac93
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:402
+  53:     0x55eb9f70020e - std::future::poll_with_tls_context::{{closure}}::h526aef982e52e394
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  54:     0x55eb9f6ffc65 - std::future::get_task_context::h09323b2ae8cc2955
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:111
+  55:     0x55eb9f7001ce - std::future::poll_with_tls_context::hf4d8652ffcfc7002
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  56:     0x55eb9f6eb45e - tokio::task::local::LocalSet::run_until::{{closure}}::h0ef84a9294fc5eb6
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:358
+  57:     0x55eb9f700acf - <std::future::GenFuture<T> as core::future::future::Future>::poll::{{closure}}::h0d1930a10b5bcef9
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  58:     0x55eb9f700041 - std::future::set_task_context::ha941627c271c70ee
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:79
+  59:     0x55eb9f700a98 - <std::future::GenFuture<T> as core::future::future::Future>::poll::h379d6c90c5e9f714
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  60:     0x55eb9f6e3df0 - tokio::runtime::basic_scheduler::BasicScheduler<P>::block_on::h9424e225f5627eb6
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/basic_scheduler.rs:138
+  61:     0x55eb9f70090b - tokio::runtime::Runtime::block_on::{{closure}}::h018e1ae877b3cf43
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/mod.rs:411
+  62:     0x55eb9f6f22c4 - tokio::runtime::context::enter::h7bea5729ab3bb14c
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/context.rs:72
+  63:     0x55eb9f6f20f2 - tokio::runtime::handle::Handle::enter::h993241ae0b4435b2
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/handle.rs:33
+  64:     0x55eb9f70083e - tokio::runtime::Runtime::block_on::ha9e1500da2420d98
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/mod.rs:408
+  65:     0x55eb9f6eaf95 - tokio::task::local::LocalSet::block_on::h86368ad51fef75ca
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:321
+  66:     0x55eb9f6f3908 - actix_rt::runtime::Runtime::block_on::h2c5a2db3698f1ab1
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-rt-1.0.0/src/runtime.rs:89
+  67:     0x55eb9f6ed75f - actix_rt::arbiter::Arbiter::new::{{closure}}::h17b41a81d1b4d09b
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-rt-1.0.0/src/arbiter.rs:125
+  68:     0x55eb9f6f7385 - std::sys_common::backtrace::__rust_begin_short_backtrace::h6fdfccbbe84af3d4
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/sys_common/backtrace.rs:129
+  69:     0x55eb9f6d66f4 - std::thread::Builder::spawn_unchecked::{{closure}}::{{closure}}::h60da116e8745935c
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/mod.rs:469
+  70:     0x55eb9f6ccfa4 - <std::panic::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once::h3cbb2bc9bd27ad56
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:317
+  71:     0x55eb9f6f4b21 - std::panicking::try::do_call::h1c56af86e4b39ceb
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:287
+  72:     0x55eb9f9adeda - __rust_maybe_catch_panic
+                               at src/libpanic_unwind/lib.rs:78
+  73:     0x55eb9f6f3a38 - std::panicking::try::h01dafaebe7d59893
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:265
+  74:     0x55eb9f6cd6f6 - std::panic::catch_unwind::hd40201c6b8f08088
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:396
+  75:     0x55eb9f6d64cd - std::thread::Builder::spawn_unchecked::{{closure}}::h16ef6d336568b212
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/mod.rs:468
+  76:     0x55eb9f6d95b4 - core::ops::function::FnOnce::call_once{{vtable.shim}}::h8b14e0483c05e5b6
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/ops/function.rs:227
+  77:     0x55eb9f99df8f - <alloc::boxed::Box<F> as core::ops::function::FnOnce<A>>::call_once::h3534c64212330b0c
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/liballoc/boxed.rs:942
+  78:     0x55eb9f9ad310 - <alloc::boxed::Box<F> as core::ops::function::FnOnce<A>>::call_once::h338c10574a337ece
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/liballoc/boxed.rs:942
+  79:     0x55eb9f9ad310 - std::sys_common::thread::start_thread::h761ac6d57710d65d
+                               at src/libstd/sys_common/thread.rs:13
+  80:     0x55eb9f9ad310 - std::sys::unix::thread::Thread::new::thread_start::h61c012ef60f933c0
+                               at src/libstd/sys/unix/thread.rs:79
+  81:     0x7fed734ef182 - start_thread
+  82:     0x7fed733feb1f - __clone
+  83:                0x0 - <unknown>
+stack backtrace:
+   0:     0x55eb9f9a6fa4 - backtrace::backtrace::libunwind::trace::h65597d255cb1398b
+                               at /cargo/registry/src/github.com-1ecc6299db9ec823/backtrace-0.3.40/src/backtrace/libunwind.rs:88
+   1:     0x55eb9f9a6fa4 - backtrace::backtrace::trace_unsynchronized::hd4f479d7150ec4a0
+                               at /cargo/registry/src/github.com-1ecc6299db9ec823/backtrace-0.3.40/src/backtrace/mod.rs:66
+   2:     0x55eb9f9a6fa4 - std::sys_common::backtrace::_print_fmt::h015072984a2b172c
+                               at src/libstd/sys_common/backtrace.rs:77
+   3:     0x55eb9f9a6fa4 - <std::sys_common::backtrace::_print::DisplayBacktrace as core::fmt::Display>::fmt::h6df05d3335f32194
+                               at src/libstd/sys_common/backtrace.rs:61
+   4:     0x55eb9f9c81ac - core::fmt::write::h1f444f4312eb6c27
+                               at src/libcore/fmt/mod.rs:1028
+   5:     0x55eb9f9a2807 - std::io::Write::write_fmt::h8d147888220078ef
+                               at src/libstd/io/mod.rs:1412
+   6:     0x55eb9f9a947e - std::sys_common::backtrace::_print::h8a6df0fa81d6af62
+                               at src/libstd/sys_common/backtrace.rs:65
+   7:     0x55eb9f9a947e - std::sys_common::backtrace::print::h6f05b4733407e509
+                               at src/libstd/sys_common/backtrace.rs:50
+   8:     0x55eb9f9a947e - std::panicking::default_hook::{{closure}}::h0d0a23bd02315dd8
+                               at src/libstd/panicking.rs:188
+   9:     0x55eb9f9a9171 - std::panicking::default_hook::h8d15a9aecb4efac6
+                               at src/libstd/panicking.rs:205
+  10:     0x55eb9f9a9b7b - std::panicking::rust_panic_with_hook::hbe174577402a475d
+                               at src/libstd/panicking.rs:464
+  11:     0x55eb9f9a971e - std::panicking::continue_panic_fmt::h4d855dad868accf3
+                               at src/libstd/panicking.rs:373
+  12:     0x55eb9f9a9606 - rust_begin_unwind
+                               at src/libstd/panicking.rs:302
+  13:     0x55eb9f9c4d3e - core::panicking::panic_fmt::hdeb7979ab6591473
+                               at src/libcore/panicking.rs:139
+  14:     0x55eb9f9c4e37 - core::result::unwrap_failed::h054dd680e6fcd38b
+                               at src/libcore/result.rs:1165
+  15:     0x55eb9f100afb - core::result::Result<T,E>::expect::h93d92cc45da8f772
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/result.rs:960
+  16:     0x55eb9f0d9eeb - core::cell::RefCell<T>::borrow_mut::h30249db1ef8ca042
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/cell.rs:869
+  17:     0x55eb9f0dd4b0 - <actix_identity::IdentityServiceMiddleware<S,T> as actix_service::Service>::poll_ready::h5c4cc02f1b29f2a1
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-identity-0.2.0/src/lib.rs:268
+  18:     0x55eb9f059097 - <actix_web::app_service::AppInitService<T,B> as actix_service::Service>::poll_ready::ha81f7e796553b9df
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-web-2.0.0/src/app_service.rs:227
+  19:     0x55eb9f110c40 - <actix_http::cloneable::CloneableService<T> as actix_service::Service>::poll_ready::h16504f833cde5bae
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-http-1.0.1/src/cloneable.rs:36
+  20:     0x55eb9f0e7af2 - <actix_http::service::HttpServiceHandler<T,S,B,X,U> as actix_service::Service>::poll_ready::hde7b296b3bdfe269
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-http-1.0.1/src/service.rs:514
+  21:     0x55eb9f05745d - <actix_service::and_then::AndThenService<A,B> as actix_service::Service>::poll_ready::he1c8d6e94ce952b4
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-service-1.0.2/src/and_then.rs:45
+  22:     0x55eb9f0b0312 - <actix_server::service::StreamService<T> as actix_service::Service>::poll_ready::ha5f3394dd99cdb59
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-server-1.0.1/src/service.rs:72
+  23:     0x55eb9f313b98 - actix_server::worker::Worker::check_readiness::h0c7d2f2d7a640a8f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-server-1.0.1/src/worker.rs:260
+  24:     0x55eb9f31630e - <actix_server::worker::Worker as core::future::future::Future>::poll::hfc1fcf0f0601fbd9
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-server-1.0.1/src/worker.rs:453
+  25:     0x55eb9f30edbe - std::future::poll_with_tls_context::{{closure}}::h3708e647ffb29f35
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  26:     0x55eb9f30e3f5 - std::future::get_task_context::h789805cfbc8c0eb3
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:111
+  27:     0x55eb9f30ed2e - std::future::poll_with_tls_context::h0e03ed13fc4db9d0
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  28:     0x55eb9f31294f - actix_server::worker::Worker::start::{{closure}}::{{closure}}::h875d387a1c7680af
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-server-1.0.1/src/worker.rs:217
+  29:     0x55eb9f310deb - <std::future::GenFuture<T> as core::future::future::Future>::poll::{{closure}}::h2c5d5298eb24aa51
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  30:     0x55eb9f30ea41 - std::future::set_task_context::h94b8f5e14ee574d7
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:79
+  31:     0x55eb9f310cc8 - <std::future::GenFuture<T> as core::future::future::Future>::poll::hb04074825ec177f9
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  32:     0x55eb9f2e26f1 - tokio::task::core::Core<T>::poll::h092706b870b9e79f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/core.rs:128
+  33:     0x55eb9f34b208 - tokio::task::harness::Harness<T,S>::poll::{{closure}}::{{closure}}::hd3bef10a96902e6c
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/harness.rs:120
+  34:     0x55eb9f32fb5c - core::ops::function::FnOnce::call_once::he700d9400b62941f
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/ops/function.rs:227
+  35:     0x55eb9f2bbebe - <std::panic::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once::h29e555a8cff85868
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:317
+  36:     0x55eb9f361355 - std::panicking::try::do_call::hea8b1add176a5bc4
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:287
+  37:     0x55eb9f9adeda - __rust_maybe_catch_panic
+                               at src/libpanic_unwind/lib.rs:78
+  38:     0x55eb9f35edb7 - std::panicking::try::h1a27d50d956710b2
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:265
+  39:     0x55eb9f2bc775 - std::panic::catch_unwind::hefa9648ffa63ecc5
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:396
+  40:     0x55eb9f34ab43 - tokio::task::harness::Harness<T,S>::poll::{{closure}}::hb6c6122aa281993b
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/harness.rs:101
+  41:     0x55eb9f2ef3df - tokio::loom::std::causal_cell::CausalCell<T>::with_mut::h1803aef40ff3e34d
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/loom/std/causal_cell.rs:41
+  42:     0x55eb9f348500 - tokio::task::harness::Harness<T,S>::poll::h36e43560103b33d3
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/harness.rs:100
+  43:     0x55eb9f2f2268 - tokio::task::raw::poll::h9c9e2f603d607e16
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/raw.rs:162
+  44:     0x55eb9f916d47 - tokio::task::raw::RawTask::poll::h6dcd2aa5edb1c3ce
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/raw.rs:113
+  45:     0x55eb9f89f18c - tokio::task::Task<S>::run::hc41fc0f46c57bdcc
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/mod.rs:371
+  46:     0x55eb9f8d418b - tokio::task::local::Scheduler::tick::hbc580cbb844f4a43
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:513
+  47:     0x55eb9f6ec5c2 - <tokio::task::local::LocalFuture<F> as core::future::future::Future>::poll::{{closure}}::hf2ebdefb8600971f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:407
+  48:     0x55eb9f6eb777 - tokio::task::local::Scheduler::with::{{closure}}::h7853f7a06d1a7d80
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:478
+  49:     0x55eb9f71430d - std::thread::local::LocalKey<T>::try_with::h38c3bcf2431c57af
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/local.rs:262
+  50:     0x55eb9f712e0c - std::thread::local::LocalKey<T>::with::h14c938bbab4ae39e
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/local.rs:239
+  51:     0x55eb9f6eb62f - tokio::task::local::Scheduler::with::h37b96d481465d74f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:474
+  52:     0x55eb9f6ec370 - <tokio::task::local::LocalFuture<F> as core::future::future::Future>::poll::h5cf5463b78acac93
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:402
+  53:     0x55eb9f70020e - std::future::poll_with_tls_context::{{closure}}::h526aef982e52e394
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  54:     0x55eb9f6ffc65 - std::future::get_task_context::h09323b2ae8cc2955
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:111
+  55:     0x55eb9f7001ce - std::future::poll_with_tls_context::hf4d8652ffcfc7002
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  56:     0x55eb9f6eb45e - tokio::task::local::LocalSet::run_until::{{closure}}::h0ef84a9294fc5eb6
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:358
+  57:     0x55eb9f700acf - <std::future::GenFuture<T> as core::future::future::Future>::poll::{{closure}}::h0d1930a10b5bcef9
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  58:     0x55eb9f700041 - std::future::set_task_context::ha941627c271c70ee
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:79
+  59:     0x55eb9f700a98 - <std::future::GenFuture<T> as core::future::future::Future>::poll::h379d6c90c5e9f714
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  60:     0x55eb9f6e3df0 - tokio::runtime::basic_scheduler::BasicScheduler<P>::block_on::h9424e225f5627eb6
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/basic_scheduler.rs:138
+  61:     0x55eb9f70090b - tokio::runtime::Runtime::block_on::{{closure}}::h018e1ae877b3cf43
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/mod.rs:411
+  62:     0x55eb9f6f22c4 - tokio::runtime::context::enter::h7bea5729ab3bb14c
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/context.rs:72
+  63:     0x55eb9f6f20f2 - tokio::runtime::handle::Handle::enter::h993241ae0b4435b2
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/handle.rs:33
+  64:     0x55eb9f70083e - tokio::runtime::Runtime::block_on::ha9e1500da2420d98
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/mod.rs:408
+  65:     0x55eb9f6eaf95 - tokio::task::local::LocalSet::block_on::h86368ad51fef75ca
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:321
+  66:     0x55eb9f6f3908 - actix_rt::runtime::Runtime::block_on::h2c5a2db3698f1ab1
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-rt-1.0.0/src/runtime.rs:89
+  67:     0x55eb9f6ed75f - actix_rt::arbiter::Arbiter::new::{{closure}}::h17b41a81d1b4d09b
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-rt-1.0.0/src/arbiter.rs:125
+  68:     0x55eb9f6f7385 - std::sys_common::backtrace::__rust_begin_short_backtrace::h6fdfccbbe84af3d4
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/sys_common/backtrace.rs:129
+  69:     0x55eb9f6d66f4 - std::thread::Builder::spawn_unchecked::{{closure}}::{{closure}}::h60da116e8745935c
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/mod.rs:469
+  70:     0x55eb9f6ccfa4 - <std::panic::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once::h3cbb2bc9bd27ad56
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:317
+  71:     0x55eb9f6f4b21 - std::panicking::try::do_call::h1c56af86e4b39ceb
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:287
+  72:     0x55eb9f9adeda - __rust_maybe_catch_panic
+                               at src/libpanic_unwind/lib.rs:78
+  73:     0x55eb9f6f3a38 - std::panicking::try::h01dafaebe7d59893
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:265
+  74:     0x55eb9f6cd6f6 - std::panic::catch_unwind::hd40201c6b8f08088
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:396
+  75:     0x55eb9f6d64cd - std::thread::Builder::spawn_unchecked::{{closure}}::h16ef6d336568b212
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/mod.rs:468
+  76:     0x55eb9f6d95b4 - core::ops::function::FnOnce::call_once{{vtable.shim}}::h8b14e0483c05e5b6
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/ops/function.rs:227
+  77:     0x55eb9f99df8f - <alloc::boxed::Box<F> as core::ops::function::FnOnce<A>>::call_once::h3534c64212330b0c
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/liballoc/boxed.rs:942
+  78:     0x55eb9f9ad310 - <alloc::boxed::Box<F> as core::ops::function::FnOnce<A>>::call_once::h338c10574a337ece
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/liballoc/boxed.rs:942
+  79:     0x55eb9f9ad310 - std::sys_common::thread::start_thread::h761ac6d57710d65d
+                               at src/libstd/sys_common/thread.rs:13
+  80:     0x55eb9f9ad310 - std::sys::unix::thread::Thread::new::thread_start::h61c012ef60f933c0
+                               at src/libstd/sys/unix/thread.rs:79
+  81:     0x7fed734ef182 - start_thread
+  82:     0x7fed733feb1f - __clone
+  83:                0x0 - <unknown>
+stack backtrace:
+   0:     0x55eb9f9a6fa4 - backtrace::backtrace::libunwind::trace::h65597d255cb1398b
+                               at /cargo/registry/src/github.com-1ecc6299db9ec823/backtrace-0.3.40/src/backtrace/libunwind.rs:88
+   1:     0x55eb9f9a6fa4 - backtrace::backtrace::trace_unsynchronized::hd4f479d7150ec4a0
+                               at /cargo/registry/src/github.com-1ecc6299db9ec823/backtrace-0.3.40/src/backtrace/mod.rs:66
+   2:     0x55eb9f9a6fa4 - std::sys_common::backtrace::_print_fmt::h015072984a2b172c
+                               at src/libstd/sys_common/backtrace.rs:77
+   3:     0x55eb9f9a6fa4 - <std::sys_common::backtrace::_print::DisplayBacktrace as core::fmt::Display>::fmt::h6df05d3335f32194
+                               at src/libstd/sys_common/backtrace.rs:61
+   4:     0x55eb9f9c81ac - core::fmt::write::h1f444f4312eb6c27
+                               at src/libcore/fmt/mod.rs:1028
+   5:     0x55eb9f9a2807 - std::io::Write::write_fmt::h8d147888220078ef
+                               at src/libstd/io/mod.rs:1412
+   6:     0x55eb9f9a947e - std::sys_common::backtrace::_print::h8a6df0fa81d6af62
+                               at src/libstd/sys_common/backtrace.rs:65
+   7:     0x55eb9f9a947e - std::sys_common::backtrace::print::h6f05b4733407e509
+                               at src/libstd/sys_common/backtrace.rs:50
+   8:     0x55eb9f9a947e - std::panicking::default_hook::{{closure}}::h0d0a23bd02315dd8
+                               at src/libstd/panicking.rs:188
+   9:     0x55eb9f9a9171 - std::panicking::default_hook::h8d15a9aecb4efac6
+                               at src/libstd/panicking.rs:205
+  10:     0x55eb9f9a9b7b - std::panicking::rust_panic_with_hook::hbe174577402a475d
+                               at src/libstd/panicking.rs:464
+  11:     0x55eb9f9a971e - std::panicking::continue_panic_fmt::h4d855dad868accf3
+                               at src/libstd/panicking.rs:373
+  12:     0x55eb9f9a9606 - rust_begin_unwind
+                               at src/libstd/panicking.rs:302
+  13:     0x55eb9f9c4d3e - core::panicking::panic_fmt::hdeb7979ab6591473
+                               at src/libcore/panicking.rs:139
+  14:     0x55eb9f9c4e37 - core::result::unwrap_failed::h054dd680e6fcd38b
+                               at src/libcore/result.rs:1165
+  15:     0x55eb9f100afb - core::result::Result<T,E>::expect::h93d92cc45da8f772
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/result.rs:960
+  16:     0x55eb9f0d9eeb - core::cell::RefCell<T>::borrow_mut::h30249db1ef8ca042
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/cell.rs:869
+  17:     0x55eb9f0dd4b0 - <actix_identity::IdentityServiceMiddleware<S,T> as actix_service::Service>::poll_ready::h5c4cc02f1b29f2a1
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-identity-0.2.0/src/lib.rs:268
+  18:     0x55eb9f059097 - <actix_web::app_service::AppInitService<T,B> as actix_service::Service>::poll_ready::ha81f7e796553b9df
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-web-2.0.0/src/app_service.rs:227
+  19:     0x55eb9f110c40 - <actix_http::cloneable::CloneableService<T> as actix_service::Service>::poll_ready::h16504f833cde5bae
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-http-1.0.1/src/cloneable.rs:36
+  20:     0x55eb9f0e7af2 - <actix_http::service::HttpServiceHandler<T,S,B,X,U> as actix_service::Service>::poll_ready::hde7b296b3bdfe269
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-http-1.0.1/src/service.rs:514
+  21:     0x55eb9f05745d - <actix_service::and_then::AndThenService<A,B> as actix_service::Service>::poll_ready::he1c8d6e94ce952b4
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-service-1.0.2/src/and_then.rs:45
+  22:     0x55eb9f0b0312 - <actix_server::service::StreamService<T> as actix_service::Service>::poll_ready::ha5f3394dd99cdb59
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-server-1.0.1/src/service.rs:72
+  23:     0x55eb9f313b98 - actix_server::worker::Worker::check_readiness::h0c7d2f2d7a640a8f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-server-1.0.1/src/worker.rs:260
+  24:     0x55eb9f31630e - <actix_server::worker::Worker as core::future::future::Future>::poll::hfc1fcf0f0601fbd9
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-server-1.0.1/src/worker.rs:453
+  25:     0x55eb9f30edbe - std::future::poll_with_tls_context::{{closure}}::h3708e647ffb29f35
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  26:     0x55eb9f30e3f5 - std::future::get_task_context::h789805cfbc8c0eb3
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:111
+  27:     0x55eb9f30ed2e - std::future::poll_with_tls_context::h0e03ed13fc4db9d0
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  28:     0x55eb9f31294f - actix_server::worker::Worker::start::{{closure}}::{{closure}}::h875d387a1c7680af
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-server-1.0.1/src/worker.rs:217
+  29:     0x55eb9f310deb - <std::future::GenFuture<T> as core::future::future::Future>::poll::{{closure}}::h2c5d5298eb24aa51
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  30:     0x55eb9f30ea41 - std::future::set_task_context::h94b8f5e14ee574d7
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:79
+  31:     0x55eb9f310cc8 - <std::future::GenFuture<T> as core::future::future::Future>::poll::hb04074825ec177f9
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  32:     0x55eb9f2e26f1 - tokio::task::core::Core<T>::poll::h092706b870b9e79f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/core.rs:128
+  33:     0x55eb9f34b208 - tokio::task::harness::Harness<T,S>::poll::{{closure}}::{{closure}}::hd3bef10a96902e6c
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/harness.rs:120
+  34:     0x55eb9f32fb5c - core::ops::function::FnOnce::call_once::he700d9400b62941f
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/ops/function.rs:227
+  35:     0x55eb9f2bbebe - <std::panic::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once::h29e555a8cff85868
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:317
+  36:     0x55eb9f361355 - std::panicking::try::do_call::hea8b1add176a5bc4
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:287
+  37:     0x55eb9f9adeda - __rust_maybe_catch_panic
+                               at src/libpanic_unwind/lib.rs:78
+  38:     0x55eb9f35edb7 - std::panicking::try::h1a27d50d956710b2
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:265
+  39:     0x55eb9f2bc775 - std::panic::catch_unwind::hefa9648ffa63ecc5
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:396
+  40:     0x55eb9f34ab43 - tokio::task::harness::Harness<T,S>::poll::{{closure}}::hb6c6122aa281993b
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/harness.rs:101
+  41:     0x55eb9f2ef3df - tokio::loom::std::causal_cell::CausalCell<T>::with_mut::h1803aef40ff3e34d
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/loom/std/causal_cell.rs:41
+  42:     0x55eb9f348500 - tokio::task::harness::Harness<T,S>::poll::h36e43560103b33d3
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/harness.rs:100
+  43:     0x55eb9f2f2268 - tokio::task::raw::poll::h9c9e2f603d607e16
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/raw.rs:162
+  44:     0x55eb9f916d47 - tokio::task::raw::RawTask::poll::h6dcd2aa5edb1c3ce
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/raw.rs:113
+  45:     0x55eb9f89f18c - tokio::task::Task<S>::run::hc41fc0f46c57bdcc
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/mod.rs:371
+  46:     0x55eb9f8d418b - tokio::task::local::Scheduler::tick::hbc580cbb844f4a43
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:513
+  47:     0x55eb9f6ec5c2 - <tokio::task::local::LocalFuture<F> as core::future::future::Future>::poll::{{closure}}::hf2ebdefb8600971f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:407
+  48:     0x55eb9f6eb777 - tokio::task::local::Scheduler::with::{{closure}}::h7853f7a06d1a7d80
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:478
+  49:     0x55eb9f71430d - std::thread::local::LocalKey<T>::try_with::h38c3bcf2431c57af
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/local.rs:262
+  50:     0x55eb9f712e0c - std::thread::local::LocalKey<T>::with::h14c938bbab4ae39e
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/local.rs:239
+  51:     0x55eb9f6eb62f - tokio::task::local::Scheduler::with::h37b96d481465d74f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:474
+  52:     0x55eb9f6ec370 - <tokio::task::local::LocalFuture<F> as core::future::future::Future>::poll::h5cf5463b78acac93
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:402
+  53:     0x55eb9f70020e - std::future::poll_with_tls_context::{{closure}}::h526aef982e52e394
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  54:     0x55eb9f6ffc65 - std::future::get_task_context::h09323b2ae8cc2955
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:111
+  55:     0x55eb9f7001ce - std::future::poll_with_tls_context::hf4d8652ffcfc7002
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  56:     0x55eb9f6eb45e - tokio::task::local::LocalSet::run_until::{{closure}}::h0ef84a9294fc5eb6
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:358
+  57:     0x55eb9f700acf - <std::future::GenFuture<T> as core::future::future::Future>::poll::{{closure}}::h0d1930a10b5bcef9
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  58:     0x55eb9f700041 - std::future::set_task_context::ha941627c271c70ee
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:79
+  59:     0x55eb9f700a98 - <std::future::GenFuture<T> as core::future::future::Future>::poll::h379d6c90c5e9f714
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  60:     0x55eb9f6e3df0 - tokio::runtime::basic_scheduler::BasicScheduler<P>::block_on::h9424e225f5627eb6
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/basic_scheduler.rs:138
+  61:     0x55eb9f70090b - tokio::runtime::Runtime::block_on::{{closure}}::h018e1ae877b3cf43
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/mod.rs:411
+  62:     0x55eb9f6f22c4 - tokio::runtime::context::enter::h7bea5729ab3bb14c
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/context.rs:72
+  63:     0x55eb9f6f20f2 - tokio::runtime::handle::Handle::enter::h993241ae0b4435b2
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/handle.rs:33
+  64:     0x55eb9f70083e - tokio::runtime::Runtime::block_on::ha9e1500da2420d98
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/mod.rs:408
+  65:     0x55eb9f6eaf95 - tokio::task::local::LocalSet::block_on::h86368ad51fef75ca
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:321
+  66:     0x55eb9f6f3908 - actix_rt::runtime::Runtime::block_on::h2c5a2db3698f1ab1
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-rt-1.0.0/src/runtime.rs:89
+  67:     0x55eb9f6ed75f - actix_rt::arbiter::Arbiter::new::{{closure}}::h17b41a81d1b4d09b
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-rt-1.0.0/src/arbiter.rs:125
+  68:     0x55eb9f6f7385 - std::sys_common::backtrace::__rust_begin_short_backtrace::h6fdfccbbe84af3d4
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/sys_common/backtrace.rs:129
+  69:     0x55eb9f6d66f4 - std::thread::Builder::spawn_unchecked::{{closure}}::{{closure}}::h60da116e8745935c
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/mod.rs:469
+  70:     0x55eb9f6ccfa4 - <std::panic::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once::h3cbb2bc9bd27ad56
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:317
+  71:     0x55eb9f6f4b21 - std::panicking::try::do_call::h1c56af86e4b39ceb
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:287
+  72:     0x55eb9f9adeda - __rust_maybe_catch_panic
+                               at src/libpanic_unwind/lib.rs:78
+  73:     0x55eb9f6f3a38 - std::panicking::try::h01dafaebe7d59893
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:265
+  74:     0x55eb9f6cd6f6 - std::panic::catch_unwind::hd40201c6b8f08088
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:396
+  75:     0x55eb9f6d64cd - std::thread::Builder::spawn_unchecked::{{closure}}::h16ef6d336568b212
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/mod.rs:468
+  76:     0x55eb9f6d95b4 - core::ops::function::FnOnce::call_once{{vtable.shim}}::h8b14e0483c05e5b6
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/ops/function.rs:227
+  77:     0x55eb9f99df8f - <alloc::boxed::Box<F> as core::ops::function::FnOnce<A>>::call_once::h3534c64212330b0c
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/liballoc/boxed.rs:942
+  78:     0x55eb9f9ad310 - <alloc::boxed::Box<F> as core::ops::function::FnOnce<A>>::call_once::h338c10574a337ece
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/liballoc/boxed.rs:942
+  79:     0x55eb9f9ad310 - std::sys_common::thread::start_thread::h761ac6d57710d65d
+                               at src/libstd/sys_common/thread.rs:13
+  80:     0x55eb9f9ad310 - std::sys::unix::thread::Thread::new::thread_start::h61c012ef60f933c0
+                               at src/libstd/sys/unix/thread.rs:79
+  81:     0x7fed734ef182 - start_thread
+  82:     0x7fed733feb1f - __clone
+  83:                0x0 - <unknown>
+stack backtrace:
+   0:     0x55eb9f9a6fa4 - backtrace::backtrace::libunwind::trace::h65597d255cb1398b
+                               at /cargo/registry/src/github.com-1ecc6299db9ec823/backtrace-0.3.40/src/backtrace/libunwind.rs:88
+   1:     0x55eb9f9a6fa4 - backtrace::backtrace::trace_unsynchronized::hd4f479d7150ec4a0
+                               at /cargo/registry/src/github.com-1ecc6299db9ec823/backtrace-0.3.40/src/backtrace/mod.rs:66
+   2:     0x55eb9f9a6fa4 - std::sys_common::backtrace::_print_fmt::h015072984a2b172c
+                               at src/libstd/sys_common/backtrace.rs:77
+   3:     0x55eb9f9a6fa4 - <std::sys_common::backtrace::_print::DisplayBacktrace as core::fmt::Display>::fmt::h6df05d3335f32194
+                               at src/libstd/sys_common/backtrace.rs:61
+   4:     0x55eb9f9c81ac - core::fmt::write::h1f444f4312eb6c27
+                               at src/libcore/fmt/mod.rs:1028
+   5:     0x55eb9f9a2807 - std::io::Write::write_fmt::h8d147888220078ef
+                               at src/libstd/io/mod.rs:1412
+   6:     0x55eb9f9a947e - std::sys_common::backtrace::_print::h8a6df0fa81d6af62
+                               at src/libstd/sys_common/backtrace.rs:65
+   7:     0x55eb9f9a947e - std::sys_common::backtrace::print::h6f05b4733407e509
+                               at src/libstd/sys_common/backtrace.rs:50
+   8:     0x55eb9f9a947e - std::panicking::default_hook::{{closure}}::h0d0a23bd02315dd8
+                               at src/libstd/panicking.rs:188
+   9:     0x55eb9f9a9171 - std::panicking::default_hook::h8d15a9aecb4efac6
+                               at src/libstd/panicking.rs:205
+  10:     0x55eb9f9a9b7b - std::panicking::rust_panic_with_hook::hbe174577402a475d
+                               at src/libstd/panicking.rs:464
+  11:     0x55eb9f9a971e - std::panicking::continue_panic_fmt::h4d855dad868accf3
+                               at src/libstd/panicking.rs:373
+  12:     0x55eb9f9a9606 - rust_begin_unwind
+                               at src/libstd/panicking.rs:302
+  13:     0x55eb9f9c4d3e - core::panicking::panic_fmt::hdeb7979ab6591473
+                               at src/libcore/panicking.rs:139
+  14:     0x55eb9f9c4e37 - core::result::unwrap_failed::h054dd680e6fcd38b
+                               at src/libcore/result.rs:1165
+  15:     0x55eb9f100afb - core::result::Result<T,E>::expect::h93d92cc45da8f772
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/result.rs:960
+  16:     0x55eb9f0d9eeb - core::cell::RefCell<T>::borrow_mut::h30249db1ef8ca042
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/cell.rs:869
+  17:     0x55eb9f0dd4b0 - <actix_identity::IdentityServiceMiddleware<S,T> as actix_service::Service>::poll_ready::h5c4cc02f1b29f2a1
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-identity-0.2.0/src/lib.rs:268
+  18:     0x55eb9f059097 - <actix_web::app_service::AppInitService<T,B> as actix_service::Service>::poll_ready::ha81f7e796553b9df
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-web-2.0.0/src/app_service.rs:227
+  19:     0x55eb9f110c40 - <actix_http::cloneable::CloneableService<T> as actix_service::Service>::poll_ready::h16504f833cde5bae
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-http-1.0.1/src/cloneable.rs:36
+  20:     0x55eb9f0e7af2 - <actix_http::service::HttpServiceHandler<T,S,B,X,U> as actix_service::Service>::poll_ready::hde7b296b3bdfe269
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-http-1.0.1/src/service.rs:514
+  21:     0x55eb9f05745d - <actix_service::and_then::AndThenService<A,B> as actix_service::Service>::poll_ready::he1c8d6e94ce952b4
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-service-1.0.2/src/and_then.rs:45
+  22:     0x55eb9f0b0312 - <actix_server::service::StreamService<T> as actix_service::Service>::poll_ready::ha5f3394dd99cdb59
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-server-1.0.1/src/service.rs:72
+  23:     0x55eb9f313b98 - actix_server::worker::Worker::check_readiness::h0c7d2f2d7a640a8f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-server-1.0.1/src/worker.rs:260
+  24:     0x55eb9f31630e - <actix_server::worker::Worker as core::future::future::Future>::poll::hfc1fcf0f0601fbd9
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-server-1.0.1/src/worker.rs:453
+  25:     0x55eb9f30edbe - std::future::poll_with_tls_context::{{closure}}::h3708e647ffb29f35
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  26:     0x55eb9f30e3f5 - std::future::get_task_context::h789805cfbc8c0eb3
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:111
+  27:     0x55eb9f30ed2e - std::future::poll_with_tls_context::h0e03ed13fc4db9d0
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  28:     0x55eb9f31294f - actix_server::worker::Worker::start::{{closure}}::{{closure}}::h875d387a1c7680af
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-server-1.0.1/src/worker.rs:217
+  29:     0x55eb9f310deb - <std::future::GenFuture<T> as core::future::future::Future>::poll::{{closure}}::h2c5d5298eb24aa51
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  30:     0x55eb9f30ea41 - std::future::set_task_context::h94b8f5e14ee574d7
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:79
+  31:     0x55eb9f310cc8 - <std::future::GenFuture<T> as core::future::future::Future>::poll::hb04074825ec177f9
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  32:     0x55eb9f2e26f1 - tokio::task::core::Core<T>::poll::h092706b870b9e79f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/core.rs:128
+  33:     0x55eb9f34b208 - tokio::task::harness::Harness<T,S>::poll::{{closure}}::{{closure}}::hd3bef10a96902e6c
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/harness.rs:120
+  34:     0x55eb9f32fb5c - core::ops::function::FnOnce::call_once::he700d9400b62941f
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/ops/function.rs:227
+  35:     0x55eb9f2bbebe - <std::panic::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once::h29e555a8cff85868
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:317
+  36:     0x55eb9f361355 - std::panicking::try::do_call::hea8b1add176a5bc4
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:287
+  37:     0x55eb9f9adeda - __rust_maybe_catch_panic
+                               at src/libpanic_unwind/lib.rs:78
+  38:     0x55eb9f35edb7 - std::panicking::try::h1a27d50d956710b2
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:265
+  39:     0x55eb9f2bc775 - std::panic::catch_unwind::hefa9648ffa63ecc5
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:396
+  40:     0x55eb9f34ab43 - tokio::task::harness::Harness<T,S>::poll::{{closure}}::hb6c6122aa281993b
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/harness.rs:101
+  41:     0x55eb9f2ef3df - tokio::loom::std::causal_cell::CausalCell<T>::with_mut::h1803aef40ff3e34d
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/loom/std/causal_cell.rs:41
+  42:     0x55eb9f348500 - tokio::task::harness::Harness<T,S>::poll::h36e43560103b33d3
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/harness.rs:100
+  43:     0x55eb9f2f2268 - tokio::task::raw::poll::h9c9e2f603d607e16
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/raw.rs:162
+  44:     0x55eb9f916d47 - tokio::task::raw::RawTask::poll::h6dcd2aa5edb1c3ce
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/raw.rs:113
+  45:     0x55eb9f89f18c - tokio::task::Task<S>::run::hc41fc0f46c57bdcc
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/mod.rs:371
+  46:     0x55eb9f8d418b - tokio::task::local::Scheduler::tick::hbc580cbb844f4a43
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:513
+  47:     0x55eb9f6ec5c2 - <tokio::task::local::LocalFuture<F> as core::future::future::Future>::poll::{{closure}}::hf2ebdefb8600971f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:407
+  48:     0x55eb9f6eb777 - tokio::task::local::Scheduler::with::{{closure}}::h7853f7a06d1a7d80
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:478
+  49:     0x55eb9f71430d - std::thread::local::LocalKey<T>::try_with::h38c3bcf2431c57af
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/local.rs:262
+  50:     0x55eb9f712e0c - std::thread::local::LocalKey<T>::with::h14c938bbab4ae39e
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/local.rs:239
+  51:     0x55eb9f6eb62f - tokio::task::local::Scheduler::with::h37b96d481465d74f
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:474
+  52:     0x55eb9f6ec370 - <tokio::task::local::LocalFuture<F> as core::future::future::Future>::poll::h5cf5463b78acac93
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:402
+  53:     0x55eb9f70020e - std::future::poll_with_tls_context::{{closure}}::h526aef982e52e394
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  54:     0x55eb9f6ffc65 - std::future::get_task_context::h09323b2ae8cc2955
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:111
+  55:     0x55eb9f7001ce - std::future::poll_with_tls_context::hf4d8652ffcfc7002
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:121
+  56:     0x55eb9f6eb45e - tokio::task::local::LocalSet::run_until::{{closure}}::h0ef84a9294fc5eb6
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:358
+  57:     0x55eb9f700acf - <std::future::GenFuture<T> as core::future::future::Future>::poll::{{closure}}::h0d1930a10b5bcef9
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  58:     0x55eb9f700041 - std::future::set_task_context::ha941627c271c70ee
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:79
+  59:     0x55eb9f700a98 - <std::future::GenFuture<T> as core::future::future::Future>::poll::h379d6c90c5e9f714
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/future.rs:43
+  60:     0x55eb9f6e3df0 - tokio::runtime::basic_scheduler::BasicScheduler<P>::block_on::h9424e225f5627eb6
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/basic_scheduler.rs:138
+  61:     0x55eb9f70090b - tokio::runtime::Runtime::block_on::{{closure}}::h018e1ae877b3cf43
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/mod.rs:411
+  62:     0x55eb9f6f22c4 - tokio::runtime::context::enter::h7bea5729ab3bb14c
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/context.rs:72
+  63:     0x55eb9f6f20f2 - tokio::runtime::handle::Handle::enter::h993241ae0b4435b2
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/handle.rs:33
+  64:     0x55eb9f70083e - tokio::runtime::Runtime::block_on::ha9e1500da2420d98
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/runtime/mod.rs:408
+  65:     0x55eb9f6eaf95 - tokio::task::local::LocalSet::block_on::h86368ad51fef75ca
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.8/src/task/local.rs:321
+  66:     0x55eb9f6f3908 - actix_rt::runtime::Runtime::block_on::h2c5a2db3698f1ab1
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-rt-1.0.0/src/runtime.rs:89
+  67:     0x55eb9f6ed75f - actix_rt::arbiter::Arbiter::new::{{closure}}::h17b41a81d1b4d09b
+                               at /home/dvdmgl/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-rt-1.0.0/src/arbiter.rs:125
+  68:     0x55eb9f6f7385 - std::sys_common::backtrace::__rust_begin_short_backtrace::h6fdfccbbe84af3d4
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/sys_common/backtrace.rs:129
+  69:     0x55eb9f6d66f4 - std::thread::Builder::spawn_unchecked::{{closure}}::{{closure}}::h60da116e8745935c
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/mod.rs:469
+  70:     0x55eb9f6ccfa4 - <std::panic::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once::h3cbb2bc9bd27ad56
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:317
+  71:     0x55eb9f6f4b21 - std::panicking::try::do_call::h1c56af86e4b39ceb
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:287
+  72:     0x55eb9f9adeda - __rust_maybe_catch_panic
+                               at src/libpanic_unwind/lib.rs:78
+  73:     0x55eb9f6f3a38 - std::panicking::try::h01dafaebe7d59893
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panicking.rs:265
+  74:     0x55eb9f6cd6f6 - std::panic::catch_unwind::hd40201c6b8f08088
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/panic.rs:396
+  75:     0x55eb9f6d64cd - std::thread::Builder::spawn_unchecked::{{closure}}::h16ef6d336568b212
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libstd/thread/mod.rs:468
+  76:     0x55eb9f6d95b4 - core::ops::function::FnOnce::call_once{{vtable.shim}}::h8b14e0483c05e5b6
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/libcore/ops/function.rs:227
+  77:     0x55eb9f99df8f - <alloc::boxed::Box<F> as core::ops::function::FnOnce<A>>::call_once::h3534c64212330b0c
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/liballoc/boxed.rs:942
+  78:     0x55eb9f9ad310 - <alloc::boxed::Box<F> as core::ops::function::FnOnce<A>>::call_once::h338c10574a337ece
+                               at /rustc/73528e339aae0f17a15ffa49a8ac608f50c6cf14/src/liballoc/boxed.rs:942
+  79:     0x55eb9f9ad310 - std::sys_common::thread::start_thread::h761ac6d57710d65d
+                               at src/libstd/sys_common/thread.rs:13
+  80:     0x55eb9f9ad310 - std::sys::unix::thread::Thread::new::thread_start::h61c012ef60f933c0
+                               at src/libstd/sys/unix/thread.rs:79
+  81:     0x7fed734ef182 - start_thread
+  82:     0x7fed733feb1f - __clone
+  83:                0x0 - <unknown>
