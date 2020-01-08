@@ -1,0 +1,17 @@
+[package]
+name = "deadpool-example-postgres-actix-web-id-failing"
+version = "0.1.0"
+authors = ["David Miguel <dvdmgl@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+actix-rt = "1.0.0"
+actix-web = "2.0.0"
+deadpool-postgres = "0.4.2"
+failure = "0.1.6"
+serde = { version = "1.0.104", features = ["derive"] }
+tokio-postgres = { version = "0.5.1", features = ["with-uuid-0_8"] }
+uuid = { version = "0.8.1", features = ["serde"] }
+dotenv = '0.15'
+dotenv_codegen = '0.15'
+actix-identity = '0.2'
